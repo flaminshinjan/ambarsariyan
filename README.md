@@ -1,5 +1,6 @@
 # Ambarsariyan
 
+<img width="1507" height="857" alt="Screenshot 2026-04-01 at 4 07 51 PM" src="https://github.com/user-attachments/assets/e02bbdae-b08f-45a6-9cec-2e15f88b05fd" />
 Workflow automation system for Gmail. Define tasks, chain them into pipelines, and let AI summarize your inbox.
 
 ## Stack
