@@ -4,3 +4,4 @@ export { WorkflowTask } from './workflow-task.entity';
 export { WorkflowRun, WorkflowRunStatus } from './workflow-run.entity';
 export { TaskRun, TaskRunStatus } from './task-run.entity';
 export { LogEntry, LogLevel } from './log-entry.entity';
+export { GoogleToken } from './google-token.entity';

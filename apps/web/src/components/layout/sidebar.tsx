@@ -12,6 +12,7 @@ const navItems = [
   { href: '/tasks', label: 'Tasks', icon: 'task_alt' },
   { href: '/workflows', label: 'Workflows', icon: 'account_tree' },
   { href: '/logs', label: 'Logs', icon: 'receipt_long' },
+  { href: '/settings', label: 'Settings', icon: 'settings' },
 ];
 
 export function Sidebar() {

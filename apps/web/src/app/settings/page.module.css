@@ -1,0 +1,113 @@
+.successBanner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  background-color: var(--success-subtle);
+  color: var(--success);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.section {
+  margin-bottom: 32px;
+}
+
+.sectionTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.integration {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.integrationInfo {
+  display: flex;
+  gap: 16px;
+  flex: 1;
+}
+
+.integrationIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background-color: var(--bg-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.integrationDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.integrationHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.integrationName {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.integrationEmail {
+  font-size: 13px;
+  font-family: var(--font-mono);
+  color: var(--accent);
+}
+
+.integrationDesc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 480px;
+}
+
+.integrationActions {
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.envGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.envItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.envLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.envValue {
+  font-size: 13px;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  background-color: var(--bg-tertiary);
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+}
