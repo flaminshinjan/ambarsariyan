@@ -1,10 +1,10 @@
 import { TaskHandler, TaskExecutionContext, TaskResult } from '../task-registry';
-import { GeminiService } from '../../gemini/gemini.service';
+import { LlmService } from '../../llm/llm.service';
 import { GmailService } from '../../gmail/gmail.service';
 
 export class GmailMorningPulseHandler implements TaskHandler {
   constructor(
-    private readonly geminiService: GeminiService,
+    private readonly llmService: LlmService,
     private readonly gmailService: GmailService,
   ) {}
 
@@ -32,7 +32,12 @@ export class GmailMorningPulseHandler implements TaskHandler {
         .map((e) => `From: ${e.from}\nSubject: ${e.subject}\n${e.snippet}`)
         .join('\n\n');
 
-      const summary = await this.geminiService.summarize(emailContent);
+      let summary: string;
+      try {
+        summary = await this.llmService.summarize(emailContent);
+      } catch {
+        summary = `Morning Pulse (LLM unavailable):\n\nYou have ${emails.length} emails. Top subjects: ${emails.slice(0, 5).map((e) => e.subject).join(', ')}.`;
+      }
 
       return {
         success: true,

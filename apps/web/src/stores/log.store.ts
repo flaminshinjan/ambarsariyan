@@ -25,8 +25,8 @@ export const useLogStore = create<LogState>()((set, get) => ({
     set({ loading: true });
     try {
       const { query } = get();
-      const logs = await api.get<ILogEntry[]>('/logs', query as Record<string, string | number | undefined>);
-      set({ logs, loading: false });
+      const res = await api.get<{ data: ILogEntry[]; total: number }>('/logs', query as Record<string, string | number | undefined>);
+      set({ logs: res.data, loading: false });
     } catch {
       set({ loading: false });
     }

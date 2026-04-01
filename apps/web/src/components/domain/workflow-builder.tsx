@@ -2,14 +2,21 @@
 
 import { useState, useEffect } from 'react';
 import type { ITask } from '@ambarsariyan/shared';
+import { TaskCategory } from '@ambarsariyan/shared';
 import { useTaskStore } from '@/stores/task.store';
-import { Input, Button, Icon, Card } from '@/components/ui';
+import { Input, Icon } from '@/components/ui';
 import styles from './workflow-builder.module.css';
 
 interface WorkflowBuilderProps {
   onSave: (data: { name: string; description: string; taskIds: string[] }) => void;
   loading?: boolean;
 }
+
+const categoryIcon: Record<TaskCategory, string> = {
+  [TaskCategory.GMAIL]: 'mail',
+  [TaskCategory.HTTP]: 'language',
+  [TaskCategory.CUSTOM]: 'build',
+};
 
 export function WorkflowBuilder({ onSave, loading }: WorkflowBuilderProps) {
   const { tasks, fetchTasks } = useTaskStore();
@@ -50,6 +57,8 @@ export function WorkflowBuilder({ onSave, loading }: WorkflowBuilderProps) {
     });
   };
 
+  const canSubmit = name.trim().length > 0 && selectedTasks.length > 0 && !loading;
+
   return (
     <div className={styles.builder}>
       <div className={styles.form}>
@@ -75,16 +84,14 @@ export function WorkflowBuilder({ onSave, loading }: WorkflowBuilderProps) {
               <p className={styles.empty}>No tasks available</p>
             )}
             {availableTasks.map((task) => (
-              <div
-                key={task.id}
-                className={styles.taskItem}
-                onClick={() => addTask(task)}
-              >
-                <div className={styles.taskInfo}>
-                  <span className={styles.taskName}>{task.name}</span>
-                  <span className={styles.taskHandler}>{task.handler}</span>
-                </div>
-                <Icon name="add" size={18} />
+              <div key={task.id} className={styles.taskItem}>
+                <span className={styles.catIcon}>
+                  <Icon name={categoryIcon[task.category] ?? 'build'} size={16} />
+                </span>
+                <span className={styles.taskName}>{task.name}</span>
+                <button className={styles.addBtn} onClick={() => addTask(task)}>
+                  <Icon name="add" size={16} />
+                </button>
               </div>
             ))}
           </div>
@@ -96,15 +103,20 @@ export function WorkflowBuilder({ onSave, loading }: WorkflowBuilderProps) {
           </h3>
           <div className={styles.taskList}>
             {selectedTasks.length === 0 && (
-              <p className={styles.empty}>Add tasks from the left panel</p>
+              <div className={styles.emptySequence}>
+                <Icon name="arrow_back" size={20} />
+                <span>Add tasks to build your workflow</span>
+              </div>
             )}
             {selectedTasks.map((task, index) => (
-              <div key={task.id} className={styles.selectedItem}>
-                <span className={styles.sequence}>{index + 1}</span>
-                <div className={styles.taskInfo}>
-                  <span className={styles.taskName}>{task.name}</span>
-                  <span className={styles.taskHandler}>{task.handler}</span>
+              <div key={task.id} className={styles.seqItem}>
+                <div className={styles.pipeline}>
+                  <span className={styles.seqNum}>{index + 1}</span>
+                  {index < selectedTasks.length - 1 && (
+                    <span className={styles.connector} />
+                  )}
                 </div>
+                <span className={styles.seqName}>{task.name}</span>
                 <div className={styles.itemActions}>
                   <button
                     className={styles.moveBtn}
@@ -133,17 +145,15 @@ export function WorkflowBuilder({ onSave, loading }: WorkflowBuilderProps) {
         </div>
       </div>
 
-      <div className={styles.actions}>
-        <Button
-          variant="primary"
-          icon="save"
-          onClick={handleSubmit}
-          disabled={!name.trim() || selectedTasks.length === 0}
-          loading={loading}
-        >
-          Create Workflow
-        </Button>
-      </div>
+      <button
+        className={styles.saveBtn}
+        disabled={!canSubmit}
+        onClick={handleSubmit}
+      >
+        {loading && <span className={styles.spinner} />}
+        {!loading && <Icon name="save" size={18} />}
+        Create Workflow
+      </button>
     </div>
   );
 }

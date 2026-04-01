@@ -9,19 +9,34 @@ export class SendGmailHandler implements TaskHandler {
     const start = Date.now();
 
     try {
-      const { to, subject, body } = context.config as {
+      const { to: configTo, subject, body } = context.config as {
         to?: string;
         subject?: string;
         body?: string;
       };
 
-      if (!to || !subject) {
+      const to = configTo || await this.gmailService.getConnectedEmail();
+
+      if (!to) {
         return {
           success: false,
           data: null,
-          error: 'Missing required config: to and subject',
+          error: 'No recipient: set "to" in task config or connect a Gmail account.',
           executionTimeMs: Date.now() - start,
         };
+      }
+
+      const emailSubject = subject || 'Ambarsariyan Morning Pulse';
+
+      let emailBody = body || '';
+      if (!emailBody && context.previousResults.length > 0) {
+        const lastResult = context.previousResults[context.previousResults.length - 1];
+        const data = lastResult.data as Record<string, unknown> | null;
+        if (data?.summary) {
+          emailBody = String(data.summary);
+        } else {
+          emailBody = JSON.stringify(data, null, 2);
+        }
       }
 
       const connected = await this.gmailService.isConnected();
@@ -32,8 +47,8 @@ export class SendGmailHandler implements TaskHandler {
           data: {
             messageId: uuidv4(),
             to,
-            subject,
-            body: body || '',
+            subject: emailSubject,
+            body: emailBody,
             sentAt: new Date().toISOString(),
             mock: true,
           },
@@ -41,14 +56,14 @@ export class SendGmailHandler implements TaskHandler {
         };
       }
 
-      const result = await this.gmailService.sendEmail(to, subject, body || '');
+      const result = await this.gmailService.sendEmail(to, emailSubject, emailBody);
 
       return {
         success: true,
         data: {
           messageId: result.messageId,
           to,
-          subject,
+          subject: emailSubject,
           sentAt: new Date().toISOString(),
           mock: false,
         },

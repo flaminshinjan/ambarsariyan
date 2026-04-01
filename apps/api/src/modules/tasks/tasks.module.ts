@@ -4,8 +4,8 @@ import { Task } from '../../database/entities';
 import { TasksService } from './tasks.service';
 import { TasksController } from './tasks.controller';
 import { TaskRegistry } from './task-registry';
-import { GeminiModule } from '../gemini/gemini.module';
-import { GeminiService } from '../gemini/gemini.service';
+import { LlmModule } from '../llm/llm.module';
+import { LlmService } from '../llm/llm.service';
 import { GmailModule } from '../gmail/gmail.module';
 import { GmailService } from '../gmail/gmail.service';
 import {
@@ -16,7 +16,7 @@ import {
 } from './handlers';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Task]), GeminiModule, GmailModule],
+  imports: [TypeOrmModule.forFeature([Task]), LlmModule, GmailModule],
   controllers: [TasksController],
   providers: [TasksService, TaskRegistry],
   exports: [TasksService, TaskRegistry],
@@ -24,7 +24,7 @@ import {
 export class TasksModule implements OnModuleInit {
   constructor(
     private readonly taskRegistry: TaskRegistry,
-    private readonly geminiService: GeminiService,
+    private readonly llmService: LlmService,
     private readonly gmailService: GmailService,
   ) {}
 
@@ -33,7 +33,7 @@ export class TasksModule implements OnModuleInit {
     this.taskRegistry.register('send_gmail', new SendGmailHandler(this.gmailService));
     this.taskRegistry.register(
       'gmail_morning_pulse',
-      new GmailMorningPulseHandler(this.geminiService, this.gmailService),
+      new GmailMorningPulseHandler(this.llmService, this.gmailService),
     );
     this.taskRegistry.register('custom_http', new CustomHttpHandler());
   }

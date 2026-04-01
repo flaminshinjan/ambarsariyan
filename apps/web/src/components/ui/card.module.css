@@ -2,30 +2,25 @@
   background-color: var(--bg-elevated);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  transition: all var(--transition-fast);
+  transition: all var(--transition-base);
+  animation: fadeIn 0.3s ease;
 }
 
-.pad-none {
-  padding: 0;
-}
-
-.pad-sm {
-  padding: 12px;
-}
-
-.pad-md {
-  padding: 16px;
-}
-
-.pad-lg {
-  padding: 24px;
-}
+.pad-none { padding: 0; }
+.pad-sm { padding: 12px 14px; }
+.pad-md { padding: 18px 20px; }
+.pad-lg { padding: 24px; }
 
 .hoverable {
   cursor: pointer;
 }
 
 .hoverable:hover {
-  border-color: var(--accent);
-  box-shadow: var(--shadow-sm);
+  border-color: var(--accent-muted);
+  box-shadow: var(--shadow-md), var(--shadow-glow);
+  transform: translateY(-1px);
+}
+
+.hoverable:active {
+  transform: translateY(0);
 }

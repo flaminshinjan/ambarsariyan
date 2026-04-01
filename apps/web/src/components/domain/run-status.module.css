@@ -2,10 +2,10 @@
   background-color: var(--bg-secondary);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 16px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .header {
@@ -14,22 +14,43 @@
   justify-content: space-between;
 }
 
-.headerLeft {
-  display: flex;
+.statusBadge {
+  display: inline-flex;
   align-items: center;
-  gap: 12px;
-}
-
-.progress {
+  padding: 6px 16px;
+  border-radius: var(--radius-sm);
   font-size: 13px;
-  color: var(--text-secondary);
-  font-weight: 500;
+  font-weight: 700;
+  color: #fff;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
 }
 
-.time {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text-tertiary);
+.statusBadge.completed {
+  background: var(--success-gradient);
+}
+
+.statusBadge.running {
+  background: var(--accent-gradient);
+}
+
+.statusBadge.failed {
+  background: var(--error-gradient);
+}
+
+.statusBadge.pending {
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+.statusBadge.skipped {
+  background: var(--warning-gradient);
+}
+
+.progressText {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
 }
 
 .progressBar {
@@ -43,37 +64,69 @@
   height: 100%;
   border-radius: 2px;
   transition: width var(--transition-base);
-  background-color: var(--accent);
+  background: linear-gradient(90deg, var(--accent), var(--success));
 }
 
-.progressFill[data-status='completed'] {
-  background-color: var(--success);
+.fill-completed {
+  background: var(--success-gradient);
 }
 
-.progressFill[data-status='failed'] {
-  background-color: var(--error);
+.fill-failed {
+  background: var(--error-gradient);
 }
 
-.taskRuns {
+.taskList {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
-.taskRun {
+.taskRow {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 10px;
+  gap: 12px;
+  padding: 10px 12px;
   border-radius: var(--radius-md);
   background-color: var(--bg-elevated);
+  transition: background-color var(--transition-fast);
 }
 
-.taskRunName {
+.taskRow:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.seq {
+  width: 22px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.taskName {
   flex: 1;
   font-size: 13px;
-  color: var(--text-primary);
   font-weight: 500;
+  color: var(--text-primary);
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.duration {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.statusIcon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .icon-completed {
@@ -94,4 +147,13 @@
 
 .icon-skipped {
   color: var(--warning);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
 }

@@ -1,16 +1,38 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 16px;
+  animation: fadeIn 0.4s ease;
 }
 
 .empty {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 60px 20px;
+  padding: 80px 20px;
+  gap: 12px;
+  animation: fadeIn 0.4s ease;
+}
+
+.empty p {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.empty::before {
+  content: 'checklist';
+  font-family: 'Material Symbols Outlined';
+  font-size: 64px;
   color: var(--text-tertiary);
-  font-size: 14px;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+}
+
+.empty::after {
+  content: 'Create your first task to start automating';
+  font-size: 13px;
+  color: var(--text-tertiary);
 }
 
 .form {
@@ -33,18 +55,25 @@
 
 .textarea {
   width: 100%;
-  padding: 8px 12px;
-  background-color: var(--bg-secondary);
+  padding: 10px 14px;
+  background-color: var(--bg-inset);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   color: var(--text-primary);
   font-family: var(--font-mono);
   font-size: 13px;
+  line-height: 1.6;
   outline: none;
   resize: vertical;
-  transition: border-color var(--transition-fast);
+  min-height: 100px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .textarea:focus {
   border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-subtle);
+}
+
+.textarea::placeholder {
+  color: var(--text-tertiary);
 }

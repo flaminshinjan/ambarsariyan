@@ -50,21 +50,24 @@ export class TasksService implements OnModuleInit {
         handler: 'read_gmail',
         category: TaskCategory.GMAIL,
         type: TaskType.BUILTIN,
-        description: '',
+        description: 'Reads recent emails from your Gmail inbox',
+        config: { maxResults: 10 },
       },
       {
         name: 'Send Gmail',
         handler: 'send_gmail',
         category: TaskCategory.GMAIL,
         type: TaskType.BUILTIN,
-        description: '',
+        description: 'Sends an email via Gmail',
+        config: { to: '', subject: 'Workflow Report', body: '' },
       },
       {
         name: 'Gmail Morning Pulse',
         handler: 'gmail_morning_pulse',
         category: TaskCategory.GMAIL,
         type: TaskType.BUILTIN,
-        description: '',
+        description: 'Fetches recent emails and generates an AI summary via Gemini',
+        config: { maxResults: 15 },
       },
     ];
 

@@ -95,4 +95,9 @@ export class GmailService {
     const status = await this.googleAuthService.getConnectionStatus();
     return status.connected;
   }
+
+  async getConnectedEmail(): Promise<string | null> {
+    const status = await this.googleAuthService.getConnectionStatus();
+    return status.email ?? null;
+  }
 }

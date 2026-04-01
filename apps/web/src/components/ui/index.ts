@@ -5,3 +5,4 @@ export { Badge } from './badge';
 export { Modal } from './modal';
 export { Select } from './select';
 export { Icon } from './icon';
+export { ToastContainer } from './toast';

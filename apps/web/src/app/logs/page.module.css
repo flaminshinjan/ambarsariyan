@@ -3,6 +3,7 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   margin-bottom: 24px;
+  animation: fadeIn 0.4s ease;
 }
 
 .statItem {
@@ -16,9 +17,37 @@
 }
 
 .statCount {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   line-height: 1;
+  letter-spacing: -0.3px;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.statCount.info {
+  background: var(--info-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.statCount.warn {
+  background: var(--warning-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.statCount.error {
+  background: var(--error-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.statCount.debug {
+  background: none;
+  -webkit-text-fill-color: var(--text-tertiary);
 }
 
 .statLevel {
@@ -27,4 +56,33 @@
   text-transform: uppercase;
   font-weight: 500;
   letter-spacing: 0.5px;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  gap: 12px;
+  animation: fadeIn 0.4s ease;
+}
+
+.empty::before {
+  content: 'receipt_long';
+  font-family: 'Material Symbols Outlined';
+  font-size: 64px;
+  color: var(--text-tertiary);
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+}
+
+.emptyTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.emptySubtitle {
+  font-size: 13px;
+  color: var(--text-tertiary);
 }
