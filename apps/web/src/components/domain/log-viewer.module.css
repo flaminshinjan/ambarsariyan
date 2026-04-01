@@ -1,0 +1,129 @@
+.viewer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.filters {
+  display: flex;
+  gap: 12px;
+  max-width: 200px;
+}
+
+.tableWrapper {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.th {
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-tertiary);
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.td {
+  padding: 10px 14px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.row:last-child .td {
+  border-bottom: none;
+}
+
+.timestamp {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.context {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.levelBadge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.levelBadge.info {
+  background-color: var(--accent-subtle);
+  color: var(--accent);
+}
+
+.levelBadge.warn {
+  background-color: var(--warning-subtle);
+  color: var(--warning);
+}
+
+.levelBadge.error {
+  background-color: var(--error-subtle);
+  color: var(--error);
+}
+
+.levelBadge.debug {
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+.loading,
+.empty {
+  text-align: center;
+  padding: 40px 14px;
+  color: var(--text-tertiary);
+  font-size: 13px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.pageBtn {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.pageBtn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.pageBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  font-size: 13px;
+  color: var(--text-secondary);
+}

@@ -1,0 +1,116 @@
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.statCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.statIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-secondary);
+}
+
+.statInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.statValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.sections {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.empty {
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 13px;
+  padding: 20px 0;
+}
+
+.runList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.runItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.runInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.runWorkflow {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.runTime {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+}
+
+.quickActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.quickActions a {
+  display: block;
+}
+
+.quickActions a button {
+  width: 100%;
+}

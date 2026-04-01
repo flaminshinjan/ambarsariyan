@@ -1,0 +1,46 @@
+import { v4 as uuidv4 } from 'uuid';
+import { TaskHandler, TaskExecutionContext, TaskResult } from '../task-registry';
+
+export class SendGmailHandler implements TaskHandler {
+  async execute(context: TaskExecutionContext): Promise<TaskResult> {
+    const start = Date.now();
+
+    try {
+      const { to, subject, body } = context.config as {
+        to?: string;
+        subject?: string;
+        body?: string;
+      };
+
+      if (!to || !subject) {
+        return {
+          success: false,
+          data: null,
+          error: 'Missing required config: to and subject',
+          executionTimeMs: Date.now() - start,
+        };
+      }
+
+      const messageId = uuidv4();
+
+      return {
+        success: true,
+        data: {
+          messageId,
+          to,
+          subject,
+          body: body || '',
+          sentAt: new Date().toISOString(),
+        },
+        executionTimeMs: Date.now() - start,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        data: null,
+        error: error instanceof Error ? error.message : 'Unknown error',
+        executionTimeMs: Date.now() - start,
+      };
+    }
+  }
+}

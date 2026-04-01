@@ -1,0 +1,50 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.textareaWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.textareaLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.textarea {
+  width: 100%;
+  padding: 8px 12px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  outline: none;
+  resize: vertical;
+  transition: border-color var(--transition-fast);
+}
+
+.textarea:focus {
+  border-color: var(--accent);
+}

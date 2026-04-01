@@ -1,0 +1,107 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 100vh;
+  background-color: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 12px;
+  z-index: 100;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px;
+  text-decoration: none;
+}
+
+.logoMark {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.logoText {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.navItem:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.active {
+  background-color: var(--accent-subtle);
+  color: var(--accent);
+}
+
+.active:hover {
+  background-color: var(--accent-subtle);
+  color: var(--accent);
+}
+
+.bottom {
+  padding: 0 4px;
+}
+
+.themeToggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: all var(--transition-fast);
+}
+
+.themeToggle:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
